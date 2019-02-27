@@ -6,6 +6,59 @@ end
 
 #Pry.start
 
+def bakery_test
+
+  bakery1 = Bakery.new("Test Bakery")
+
+  dessert1 = Desserts.new("Cake", bakery1)
+  dessert2 = Desserts.new("Ice Cream", bakery1)
+
+  sugar = Ingredients.new("sugar", 500, dessert1)
+  spice = Ingredients.new("spice",  50, dessert1)
+  water = Ingredients.new("water",   0, dessert1)
+  flour = Ingredients.new("flour", 300, dessert1)
+  milk  = Ingredients.new("milk" , 400, dessert2)
+  sugar2= Ingredients.new("sugar", 500, dessert2)
+
+
+  puts "Bakery Tests"
+  puts "-----------"
+  puts "#ingredients:     "
+  puts bakery1.ingredients == [sugar, spice, water, flour, milk, sugar2]
+  puts "#desserts:        "
+  puts bakery1.desserts == [dessert1, dessert2]
+  puts "#average_calories:"
+  puts bakery1.average_calories == 875
+  puts "#shopping_list:   "
+  puts bakery1.shopping_list == "sugar, spice, water, flour, milk, sugar"
+  puts "#.all:            "
+  puts Bakery.all == [bakery1]
+
+  puts "-----------"
+  puts "Dessert Tests"
+  puts "-----------"
+  puts "#ingredients:     "
+  puts dessert1.ingredients == [sugar, spice, water, flour]
+  puts "#bakery:          "
+  puts dessert1.bakery == bakery1
+  puts "#calories:        "
+  puts dessert1.calories == 850
+  puts ".all:             "
+  puts Desserts.all == [dessert1, dessert2]
+
+  puts "-----------"
+  puts "Ingredients Tests"
+  puts "-----------"
+  puts "#dessert:         "
+  puts sugar.dessert == dessert1
+  puts "#bakery:          "
+  puts sugar.bakery == bakery1
+  puts ".all:             "
+  puts Ingredients.all == [sugar, spice, water, flour, milk, sugar2]
+  puts ".find_all_by_name:"
+  puts Ingredients.find_all_by_name("sugar") == [sugar, sugar2]
+end
+
 def airbnb_test
 
   listing1 = Listing.new("Washington DC")
@@ -54,5 +107,6 @@ def airbnb_test
 
 end
 
-airbnb_test
+#airbnb_test
+bakery_test
 binding.pry
